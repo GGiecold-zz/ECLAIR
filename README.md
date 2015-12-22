@@ -8,7 +8,7 @@ In addition, the present package features several customized algorithms for asse
 References
 ----------
 * Giecold, G., Marco, E., Trippa, L. and Yuan, G.-C.,
-"Robust Inference of Cell Lineages", to appear
+"Robust Inference of Cell Lineages", submitted for publication
 * A. Strehl and J. Ghosh, "Cluster Ensembles - A Knowledge Reuse Framework
 for Combining Multiple Partitions".
 In: Journal of Machine Learning Research, 3, pp. 583-617. 2002
