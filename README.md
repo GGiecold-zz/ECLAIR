@@ -12,3 +12,8 @@ References
 * A. Strehl and J. Ghosh, "Cluster Ensembles - A Knowledge Reuse Framework
 for Combining Multiple Partitions".
 In: Journal of Machine Learning Research, 3, pp. 583-617. 2002
+
+IMPORTANT NOTICE
+----------------
+
+Much more to appear soon!
