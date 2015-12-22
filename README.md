@@ -1,0 +1,2 @@
+# ECLAIR
+Robust inference of cell lineages from large datasets of gene expression levels. ECLAIR comes up with an level of statistical confidence for the estimated lineages via consensus clustering and combining the information from multiple partitions and minimum spanning trees. The present package comes with several algorithms for assessing the similarity of ECLAIR lineage trees and the statistical confidence associated to each edge of such trees.
