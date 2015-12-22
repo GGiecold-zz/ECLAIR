@@ -9,9 +9,11 @@ References
 ----------
 * Giecold, G., Marco, E., Trippa, L. and Yuan, G.-C.,
 "Robust Inference of Cell Lineages", submitted for publication
-* A. Strehl and J. Ghosh, "Cluster Ensembles - A Knowledge Reuse Framework
+* Strehl, A. and Ghosh, J., "Cluster Ensembles - A Knowledge Reuse Framework
 for Combining Multiple Partitions".
 In: Journal of Machine Learning Research, 3, pp. 583-617. 2002
+* Conte, D., Foggia, P., Sansone, C. and Vento, M., "Thirty Years Of Graph Matching In Pattern Recognition"
+In: International Journal of Pattern Recognition and Artificial Intelligence, 18, 3, pp. 265-298. 2004
 
 IMPORTANT NOTICE
 ----------------
