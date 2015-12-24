@@ -9,7 +9,7 @@ graft src/ECLAIR/Build_instance
 graft src/ECLAIR/Statistical_performance
 
 # qPCR and flow cytometry datasets
-recursive-include src/ECLAIR/data *
+recursive-include src/ECLAIR/Statistical_performance/data *
 
 # Miscellaneous
 include LICENSE.txt
