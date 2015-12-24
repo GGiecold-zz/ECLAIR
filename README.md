@@ -19,4 +19,4 @@ In: International Journal of Pattern Recognition and Artificial Intelligence, 18
 IMPORTANT NOTICE
 ----------------
 
-Much more to appear soon!
+More details, along with installation instructions to appear soon!
