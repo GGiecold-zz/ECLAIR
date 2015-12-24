@@ -1,0 +1,15 @@
+# Documentation
+include README
+
+# building ECLAIR graphs and unrooted trees
+graft src/ECLAIR/Build_instance
+
+# Assessing the statistical performance of our method
+# by comparing multiple pairs of ECLAIR graphs and unrooted trees
+graft src/ECLAIR/Statistical_performance
+
+# qPCR and flow cytometry datasets
+recursive-include src/ECLAIR/data *
+
+# Miscellaneous
+include LICENSE.txt
