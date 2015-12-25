@@ -297,26 +297,32 @@ def experiment_1(N_iter, data_flags, method = 'k-means', test_set_flag = True):
     assert reduce(operator.xor, data_flags)
 
     assert isinstance(N_iter, int) and N_iter > 1
+    
+    try:
+        os.makedirs('./ECLAIR_performance')
+    except OSError:
+        if not os.path.isdir('./ECLAIR_performance'):
+            print('\nERROR: ECLAIR: Robustness_analysis: experiment_1\n')
+            raise
 
     start_t = time.time()
 
     ECLAIR_CyTOF_flag, ECLAIR_qPCR_flag, SPADE_CyTOF_flag = data_flags
 
     if ECLAIR_CyTOF_flag:
-        output_directory = './ECLAIR_performance'
-        
-        # Access path to the CyTOF mouse bone marrow dataset
-        compressed_data_path = pkg_resources.resource_filename(__name__,
-                        'data/SPADE_data/nbt-SD2-Transformed.csv.tar.gz')
-        extract_file(compressed_data_path, output_directory)
-        data_file = output_directory + '/nbt-SD2-Transformed.csv'
-        
+        output_directory = './ECLAIR_performance/ECLAIR_test_sets_CyTOF'
         try:
             os.makedirs(output_directory)
         except OSError:
             if not os.path.isdir(output_directory):
                 print('\nERROR: ECLAIR: Robustness_analysis: experiment_1\n')
                 raise
+        
+        # Access path to the CyTOF mouse bone marrow dataset
+        compressed_data_path = pkg_resources.resource_filename(__name__,
+                        'data/SPADE_data/nbt-SD2-Transformed.csv.tar.gz')
+        extract_file(compressed_data_path, './ECLAIR_performance')
+        data_file = './ECLAIR_performance/nbt-SD2-Transformed.csv'
 
         max_N_clusters = 50
 
