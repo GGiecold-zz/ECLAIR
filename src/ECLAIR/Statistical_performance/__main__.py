@@ -34,7 +34,7 @@ In: International Journal of Pattern Recognition and Artificial Intelligence,
 """
 
 
-from . import Robustness_analysis
+from .Robustness_analysis import experiment_1, experiment_2, experiment_3
 
 from itertools import permutations
 
