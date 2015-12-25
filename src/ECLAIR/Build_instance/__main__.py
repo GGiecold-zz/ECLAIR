@@ -118,8 +118,8 @@ def user_interface():
         except:
             cell_IDs_column = -1
 
-    answer = str(input("\nECLAIR: does this data-set include some "
-                       "time information? [Y/n] \n"))
+    answer = str(raw_input("\nECLAIR: does this data-set include some "
+                           "time information? [Y/n] \n"))
     if answer in {'y', 'Y', 'yes', 'Yes', 'YES', 'yep', 'Yep', 'YEP'}:
         try:
             time_info_column = int(input("\nECLAIR: provide the column holding "
@@ -221,15 +221,15 @@ def user_interface():
                 max_iter = -1
 
         if max_iter > recommended_max_iter:
-            answer = str(input("\nECLAIR: affinity-propagation is quite "
-                               "time-consuming. It also requires matrices of "
-                               "similarities, availabilities and responsibilities "
-                               "whose size possibly exceeds what can fit in memory "
-                               "on this machine. Unlike the version provided "
-                               "in scikit-learn, our implementation of affinity "
-                               "propagation clustering can handle this issue; "
-                               "this adds however to the overall burden.\nAre you "
-                               "sure you want to proceed with this value? [Y/n]\n"))
+            answer = str(raw_input("\nECLAIR: affinity-propagation is quite "
+                                   "time-consuming. It also requires matrices of "
+                                   "similarities, availabilities and responsibilities "
+                                   "whose size possibly exceeds what can fit in memory "
+                                   "on this machine. Unlike the version provided "
+                                   "in scikit-learn, our implementation of affinity "
+                                   "propagation clustering can handle this issue; "
+                                   "this adds however to the overall burden.\nAre you "
+                                   "sure you want to proceed with this value? [Y/n]\n"))
             if answer in {'n', 'N', 'no', 'No', 'NO', 'nope', 'Nope', 'NOPE'}:
                 try:
                     max_iter = int(input("\nECLAIR: wise choice! Please enter "
@@ -283,7 +283,7 @@ def user_interface():
             except:
                 minPts = -1
 
-        answer = str(input("\nECLAIR: do you want to provide a value of the parameter 'epsilon' for DBSCAN? [Y/n] \nIf not, as is recommended but might take some time, 'epsilon' will be determined in an adpative way from a {:n}-distance graph.\n".format(minPts)))
+        answer = str(raw_input("\nECLAIR: do you want to provide a value of the parameter 'epsilon' for DBSCAN? [Y/n] \nIf not, as is recommended but might take some time, 'epsilon' will be determined in an adpative way from a {:n}-distance graph.\n".format(minPts)))
         if answer in {'y', 'Y', 'yes', 'Yes', 'YES', 'yep', 'Yep', 'YEP', 'Yoh, man!', 'si', 'Si', 'SI', 'oui', 'Oui', 'OUI', 'da','Da', 'DA'}:
             try:
                 eps = float(input("\nECLAIR: please provide a value for "
@@ -305,7 +305,7 @@ def user_interface():
         quantile = 50
 
         if eps is None:
-            answer = str(input("\nECLAIR: do you want to specify epsilon as a particular quantile to a distribution of {:n}-nearest distances? Please answer by [Y/n]. If not, epsilon will default to the median of that distribution.\n".format(minPts)))
+            answer = str(raw_input("\nECLAIR: do you want to specify epsilon as a particular quantile to a distribution of {:n}-nearest distances? Please answer by [Y/n]. If not, epsilon will default to the median of that distribution.\n".format(minPts)))
             if answer in {'y', 'Y', 'yes', 'Yes', 'YES', 'yep', 'Yep', 'YEP','si', 'Si', 'SI', 'oui', 'Oui', 'OUI', 'da','Da', 'DA'}:
                 try:
                     quantile = float(input("\nECLAIR: please provide a value "
@@ -359,7 +359,7 @@ def user_interface():
         else:
             clustering_parameters = KMEANS_parameters('k-means', n_clusters)
 
-    answer = str(input("\nECLAIR: the total number of consensus clusters defaults to the highest number of clusters encountered in each of the {:n} independent runs of subsamplings and clusterings. Do you want to provide a value instead? [Y/n]\n".format(N_runs)))
+    answer = str(raw_input("\nECLAIR: the total number of consensus clusters defaults to the highest number of clusters encountered in each of the {:n} independent runs of subsamplings and clusterings. Do you want to provide a value instead? [Y/n]\n".format(N_runs)))
     if answer in {'y', 'Y', 'yes', 'Yes', 'YES', 'yep', 'Yep', 'YEP', 'Yoh, man!', 'si', 'Si', 'SI', 'oui', 'Oui', 'OUI', 'da','Da', 'DA'}:
         try:
             N_cc = int(input("\nECLAIR: how many clusters should make up "
