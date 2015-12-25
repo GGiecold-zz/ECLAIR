@@ -360,20 +360,21 @@ def experiment_1(N_iter, data_flags, method = 'k-means', test_set_flag = True):
     elif SPADE_CyTOF_flag:
         max_N_clusters = 50
         
+        output_directory = './ECLAIR_performance/SPADE_test_sets_CyTOF'
         try:
-            os.makedirs('./ECLAIR_performance/SPADE_test_sets_CyTOF')
+            os.makedirs(output_directory)
         except OSError:
-            if not os.path.isdir('./ECLAIR_performance/SPADE_test_sets_CyTOF'):
+            if not os.path.isdir(output_directory):
                 print('\nERROR: ECLAIR: Robustness_analysis: experiment_1\n')
                 raise
-        
-        for decies_repetita in xrange(1, 11):
-            output_directory = './ECLAIR_performance/SPADE_test_sets_CyTOF/run_{}'.format(decies_repetita)
- 
-            name_tags = ['training_1', 'training_2', 'training_3']
+            
+        SPADE_files = pkg_resources.resource_filename(__name__,
+                          'data/SPADE_test_sets')
+                      
+        name_tags = ['training_1', 'training_2', 'training_3']
 
-            _ = robustness_metrics(max_N_clusters, output_directory + '/SPADE_files',
-                                   name_tags, output_directory, test_set_flag)
+        _ = robustness_metrics(max_N_clusters, SPADE_files, name_tags, 
+                               output_directory, test_set_flag)
 
     end_t = time.time()
 
@@ -383,7 +384,6 @@ def experiment_1(N_iter, data_flags, method = 'k-means', test_set_flag = True):
 def experiment_2(data_file_name, k, sampling_fraction = 0.2, N_runs = 50):
 
     output_directory = './ECLAIR_performance/ECLAIR_same_dataset'
-
     try:
         os.makedirs(output_directory)
     except OSError:
@@ -427,7 +427,6 @@ def experiment_2(data_file_name, k, sampling_fraction = 0.2, N_runs = 50):
 def experiment_3():
 
     output_directory = './ECLAIR_performance/SPADE_same_dataset'
-    
     try:
         os.makedirs(output_directory)
     except OSError:
