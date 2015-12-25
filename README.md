@@ -64,9 +64,11 @@ Usage
 To subject a dataset to an ECLAIR analysis:
 * start a terminal;
 * enter ```ECLAIR_make [options] file_name```, where ```file_name``` denotes the path to the data about to be processed.
+It is generally recommended to leave the ```options``` field empty, which will prompt an interface guiding the user through the choice of parameters for the ECLAIR analysis at hand.
 
 To launch a full-fledged statistical performance analysis of ECLAIR and see how it consistenly performs better than SPADE, a popular method for estimating cell lineages, proceed as follows:
 * at the Shell command-line interface or graphical user interface, type in ```ECLAIR_performance```.
+In the current version, the statisitcal performance of ECLAIR is only evaluated for a moderately large flow cytometry dataset of half-a-million samples and 8 features, as well as on a qPCR dataset of mouse bone marrow samples. It shouldn't be difficult for anyone competent in Python to peer through the source code of ECLAIR and bring about a few of the changes required to submit his/her own dataset to a similar statisitcal analysis (those changes mostly pertain to domain-specific knowledge and to the format of your dataset).
 
 Several "experiments" will thereby be performed, including the comparisons of pairs of ECLAIR graphs or trees and pairs of SPADE trees generated on the same dataset. The comparison of ECLAIR instances and of SPADE instances generated on non-overlapping datasets and evaluated on a separate test set calls for detailed explanations. 
 
