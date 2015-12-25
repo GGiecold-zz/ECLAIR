@@ -15,7 +15,7 @@ ECLAIR stands for Ensemble Cell Lineage Analysis with Improved Robustness. It pr
 
 * ECLAIR then goes about performing several rounds of downsampling and clustering on such subsamples, for as many iterations as specified by the user. After each run of clustering of one such subsample, the datapoints left over are upsampled by associating them to the closest centroid in high-dimensional feature space.
 
-* For each such run, build a minimum spanning tree providing a path among the clusters. Such a minimum spanninh tree is obtained from a matrix of L2 pairwise similarities between the centroids associated to each cluster. 
+* For each such run, build a minimum spanning tree providing a path among the clusters. Such a minimum spanning tree is obtained from a matrix of L2 pairwise similarities between the centroids associated to each cluster. 
 
 * The next step seeks a consensus clustering from this ensemble of partitions of the whole dataset. Three heuristic methods are considered for this purpose: CSPA, HGPA and MCLA, all of them based on graph or hypergraph partitioning (cf. the documentation of our ```Cluster_Ensembles``` package for more information).
 
@@ -30,11 +30,37 @@ To compare two lineage trees, one has to take into account their edge connection
 
 * First, we define a metric to compare the overall similarity between two lineage trees, ```T_1``` and ```T_2```. For each tree, we evaluate the path length between every pair of cells in the population, based on the edge connectivity. The correlation between the two sets of path length values is used as a metric to compare the overall similarity of ```T_1``` and ```T_2```. For a moderately large dataset of 500,000 samples, this would naively translate into more than 100 billion pairs of distances along ```T_1```and along ```T_2```. The details of the much more efficient algorithm we developped for that purpose is available from the docstrings of our package; the gist of this algorithm is to first build a contingency table recording the overlap in the number of samples between pairs of ```T_1``` nodes versus pairs of ```T_2``` nodes.
 
-* Second, we define ```D_ij```as an edge-specific measures of statistical dispersion to evaluate the robustness of each edge within a given lineage tree , denoted ```T*```. Specifically, for each edge ```E_ij``` connecting a pair of clusters ```C_i*``` and ```C_j*```, we define the dispersion ```D_ij``` associated with ```E_ij``` as the standard deviation of the the distribution of path lengths ```L^a(x,y)```, where ```x``` and ```y``` are selected from ```C_i*```and ```C_j*```  respectively, and ```a``` is summed over the partitions and minimum spanning trees from the ensemble out of which ```T^*``` was constructed in the first place. 
+* Second, we define ```D_ij```as an edge-specific measures of statistical dispersion to evaluate the robustness of each edge within a given lineage tree , denoted ```T*```. Specifically, for each edge ```E_ij``` connecting a pair of clusters ```C_i*``` and ```C_j*```, we define the dispersion ```D_ij``` associated with ```E_ij``` as the standard deviation of the the distribution of path lengths ```L^a(x,y)```, where ```x``` and ```y``` are selected from ```C_i*```and ```C_j*```  respectively, and ```a``` is summed over the partitions and minimum spanning trees from the ensemble out of which ```T*``` was constructed in the first place. 
 
 * The afore-mentioned measure of statistical dispersion is computed solely in terms of the partitions and trees making up an ensemble from which a consensus clustering and an ECLAIR tree are then extracted. We also compare this measure with another measure of statistical dispersion, obtained by independently generating 50 different ECLAIR trees. One such tree is singled out as a reference tree. For each edge of this reference tree, we keep track of how far spread out the pairs of cells comprising the two nodes of this reference edge are across the rest of the 49 ECLAIR tree. 
 
 Our ECLAIR package features a module that computes such statistical measures and a few more tests on pairs of ECLAIR trees.
+
+Installation
+------------
+
+ECLAIR is written in Python 2.7. Install ECLAIR by sending a request to the Python Package Index (PyPI) as follows:
+* open a terminal console;
+* enter ```pip install ECLAIR```.
+Any missing third-party dependency should be automatically resolved. Apart from the Python Standard Library, those include:
+* Cluster_Ensembles (version 1.16 or later)
+* Concurrent_AP (version 1.3 or later)
+* DBSCAN_multiplex (version 1.5 or ulterior)
+* Density_Sampling (1.1 or subsequent version)
+* matplotlib (version 1.4.3 at least)
+* munkres
+* numpy (1.9.0 or ulterior version)
+* scipy
+* sklearn
+* setuptools
+* tables
+
+Please note that as part of the installation of this package, some code written in C that is part of the ```Cluster_Ensembles``` package is automatically compiled under the hood and according to the specifications of your machine. You therefore need to ensure availability of CMake and GNU make on your operating system. ```Cluster_Ensembles``` also requires the 32-bit version of the GNU C library. Please refer to the ```Cluster_Ensembles``` documentation for more information on how to meet those few requirements depending on Linux distribution.
+
+Usage
+-----
+
+
 
 References
 ----------
