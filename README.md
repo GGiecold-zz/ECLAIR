@@ -39,7 +39,7 @@ Our ECLAIR package features a module that computes such statistical measures and
 Installation
 ------------
 
-ECLAIR is written in Python 2.7. Install ECLAIR by sending a request to the Python Package Index (PyPI) as follows:
+ECLAIR is written in Python 2.7. It has been tested on Fedora Linux and on Ubuntu and should be supported by any other member of the UNIX-like family of operating systems. Install ECLAIR by sending a request to the Python Package Index (PyPI) as follows:
 * start a terminal;
 * enter ```pip install ECLAIR```.
 
