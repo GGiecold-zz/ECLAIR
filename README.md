@@ -5,10 +5,10 @@ ECLAIR achieves a higher level of confidence in the estimated lineages through t
 
 In addition, the present package features several customized algorithms for assessing the similarity between weighted graphs or unrooted trees and for estimating the reproducibility of each edge to a given tree.
 
-Algorithm overview
+Overview of ECLAIR
 ------------------
 
-ECLAIR proceeds as follow:
+ECLAIR stands for Ensemble Cell Lineage Analysis with Improved Robustness. It proceeds as follow:
 * Choose among affinity propagation, hierarchical or k-means clustering, along with DBSCAN (cf. our ```DBSCAN_multiplex``` and ```Concurrent_AP``` packages for streamlined and scalable implementations of DBSCAN and affinity propagation clustering) for how to partition a subsample of your dataset.
 * Such a subsample is obtained by density-based downsampling (as implemented in our ```Density_Sampling``` software posted on the Python Package Index), either by aiming for an overall number of datapoints to extract from the dataset or by specifiying a target percentile of the distribution of local densities around each datapoint.
 * ECLAIR then goes about performing several rounds of downsampling and clustering on such subsamples, for as many iterations as specified by the user. After each run of clustering of one such subsample, the datapoints left over are upsampled by associating them to the closest centroid in high-dimensional feature space.
