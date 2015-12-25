@@ -8,7 +8,9 @@ graft src/ECLAIR/Build_instance
 # by comparing multiple pairs of ECLAIR graphs and unrooted trees
 graft src/ECLAIR/Statistical_performance
 
-# qPCR and flow cytometry datasets
+# qPCR and flow cytometry datasets,
+# along with files pertaining to SPADE trees formerly generated and to be subjected
+# to our statistical analysis
 recursive-include src/ECLAIR/Statistical_performance/data *
 
 # Miscellaneous
