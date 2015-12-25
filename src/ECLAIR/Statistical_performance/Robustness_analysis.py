@@ -442,10 +442,10 @@ def experiment_3():
     SPADE_files = pkg_resources.resource_filename(__name__,
                       'data/SPADE_same_dataset')
                       
+    with open(SPADE_files + '/training.txt', 'r') as f:
+        training_set = np.loadtxt(f, dtype = int, delimiter = '\t')
+            
     for i in xrange(1, 11):
-        with open(SPADE_files + '/training_{0}/training_{1}.txt'.format(i, i), 'r') as f:
-            training_set = np.loadtxt(f, dtype = int, delimiter = '\t')
-        
         with open(output_directory + '/training_{0}.txt', 'w') as f:
             np.savetxt(f, training_set, fmt = '%d', delimiter = '\t')
 
