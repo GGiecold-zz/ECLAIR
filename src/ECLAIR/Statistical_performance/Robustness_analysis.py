@@ -322,9 +322,11 @@ def experiment_1(N_iter, data_flags, method = 'k-means', test_set_flag = True):
 
         name_tags = ECLAIR_generator(data_file, 0.5, 100, N_iter, method, max_N_clusters, output_directory)
 
-        _ = robustness_metrics(max_N_clusters, output_directory + '/ECLAIR_ensemble_clustering_files', name_tags, output_directory, test_set_flag)
+        _ = robustness_metrics(max_N_clusters, output_directory + '/ECLAIR_ensemble_clustering_files', name_tags, 
+                               output_directory, test_set_flag)
 
-        _ = robustness_metrics(max_N_clusters, output_directory + '/ECLAIR_ensemble_clustering_files', name_tags, output_directory, test_set_flag, MST_flag = False)
+        _ = robustness_metrics(max_N_clusters, output_directory + '/ECLAIR_ensemble_clustering_files', name_tags, 
+                               output_directory, test_set_flag, MST_flag = False)
 
     elif ECLAIR_qPCR_flag:
         data_file = pkg_resources.resource_filename(__name__,
@@ -343,9 +345,11 @@ def experiment_1(N_iter, data_flags, method = 'k-means', test_set_flag = True):
         name_tags = ECLAIR_generator(data_file, 0.2, 50, N_iter, method,
                                      max_N_clusters, output_directory, 'qPCR')
 
-        _ = robustness_metrics(max_N_clusters, output_directory + '/ECLAIR_ensemble_clustering_files', name_tags, output_directory, test_set_flag)
+        _ = robustness_metrics(max_N_clusters, output_directory + '/ECLAIR_ensemble_clustering_files', name_tags, 
+                               output_directory, test_set_flag)
 
-        _ = robustness_metrics(max_N_clusters, output_directory + '/ECLAIR_ensemble_clustering_files', name_tags, output_directory, test_set_flag, MST_flag = False)
+        _ = robustness_metrics(max_N_clusters, output_directory + '/ECLAIR_ensemble_clustering_files', name_tags, 
+                               output_directory, test_set_flag, MST_flag = False)
 
     elif SPADE_CyTOF_flag:
         max_N_clusters = 50
