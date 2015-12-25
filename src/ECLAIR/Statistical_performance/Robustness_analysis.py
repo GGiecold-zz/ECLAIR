@@ -394,7 +394,7 @@ def experiment_2(data_file_name, k, sampling_fraction = 0.2, N_runs = 50):
 
     N_samples = data.shape[0]
 
-    for i in xrange(1, 4):
+    for i in xrange(1, 51):
         with open(output_directory + '/training_{}.txt'.format(i), 'w') as f:
             np.savetxt(f, np.arange(N_samples), fmt = '%d')
 
