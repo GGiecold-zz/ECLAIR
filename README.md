@@ -40,20 +40,21 @@ Installation
 ------------
 
 ECLAIR is written in Python 2.7. Install ECLAIR by sending a request to the Python Package Index (PyPI) as follows:
-* open a terminal console;
+* start a terminal;
 * enter ```pip install ECLAIR```.
+
 Any missing third-party dependency should be automatically resolved. Apart from the Python Standard Library, those include:
-* Cluster_Ensembles (version 1.16 or later)
-* Concurrent_AP (version 1.3 or later)
-* DBSCAN_multiplex (version 1.5 or ulterior)
-* Density_Sampling (1.1 or subsequent version)
-* matplotlib (version 1.4.3 at least)
-* munkres
-* numpy (1.9.0 or ulterior version)
-* scipy
-* sklearn
-* setuptools
-* tables
+* ```Cluster_Ensembles``` (version 1.16 or later)
+* ```Concurrent_AP``` (version 1.3 or later)
+* ```DBSCAN_multiplex``` (version 1.5 or ulterior)
+* ```Density_Sampling``` (1.1 or subsequent version)
+* ```matplotlib``` (version 1.4.3 at least)
+* ```munkres```
+* ```numpy``` (1.9.0 or ulterior version)
+* ```scipy```
+* ```sklearn```
+* ```setuptools```
+* ```tables```
 
 Please note that as part of the installation of this package, some code written in C that is part of the ```Cluster_Ensembles``` package will be automatically compiled, under the hood and according to the specifications of your machine. For this process to go seamlessly, you have however to ensure availability of CMake and GNU make on your operating system. ```Cluster_Ensembles``` also requires the 32-bit version of the GNU C library. Please refer to the ```Cluster_Ensembles``` documentation for more information on how to meet those few requirements depending on Linux distribution.
 
@@ -61,11 +62,11 @@ Usage
 -----
 
 To subject a dataset to an ECLAIR analysis:
-* open a terminal window;
+* start a terminal;
 * enter ```ECLAIR_make [options] file_name```, where ```file_name``` denotes the path to the data about to be processed.
 
 To launch a full-fledged statistical performance analysis of ECLAIR and see how it consistenly performs better than SPADE, a popular method for estimating cell lineages, proceed as follows:
-* at the Shell command-line, type in ```ECLAIR_performance```.
+* at the Shell command-line interface or graphical user interface, type in ```ECLAIR_performance```.
 
 Several "experiments" will thereby be performed, including the comparisons of pairs of ECLAIR graphs or trees and pairs of SPADE trees generated on the same dataset. The comparison of ECLAIR instances and of SPADE instances generated on non-overlapping datasets and evaluated on a separate test set calls for detailed explanations. 
 
