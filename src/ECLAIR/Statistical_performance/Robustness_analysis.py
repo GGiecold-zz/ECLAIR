@@ -37,7 +37,7 @@ In: International Journal of Pattern Recognition and Artificial Intelligence,
 from __future__ import print_function
 
 from ..Build_instance import ECLAIR_core as ECLR
-from . import Statistical_tests
+from .Statistical_tests import robustness_metrics
 
 from collections import namedtuple
 import numpy as np
