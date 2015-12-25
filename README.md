@@ -55,12 +55,31 @@ Any missing third-party dependency should be automatically resolved. Apart from 
 * setuptools
 * tables
 
-Please note that as part of the installation of this package, some code written in C that is part of the ```Cluster_Ensembles``` package is automatically compiled under the hood and according to the specifications of your machine. You therefore need to ensure availability of CMake and GNU make on your operating system. ```Cluster_Ensembles``` also requires the 32-bit version of the GNU C library. Please refer to the ```Cluster_Ensembles``` documentation for more information on how to meet those few requirements depending on Linux distribution.
+Please note that as part of the installation of this package, some code written in C that is part of the ```Cluster_Ensembles``` package will be automatically compiled, under the hood and according to the specifications of your machine. For this process to go seamlessly, you have however to ensure availability of CMake and GNU make on your operating system. ```Cluster_Ensembles``` also requires the 32-bit version of the GNU C library. Please refer to the ```Cluster_Ensembles``` documentation for more information on how to meet those few requirements depending on Linux distribution.
 
 Usage
 -----
 
+To subject a dataset to an ECLAIR analysis:
+* open a terminal window;
+* enter ```ECLAIR_make [options] file_name```, where ```file_name``` denotes the path to the data about to be processed.
 
+To launch a full-fledged statistical performance analysis of ECLAIR and see how it consistenly performs better than SPADE, a popular method for estimating cell lineages, proceed as follows:
+* at the Shell command-line, type in ```ECLAIR_performance```.
+
+Several "experiments" will thereby be performed, including the comparisons of pairs of ECLAIR graphs or trees and pairs of SPADE trees generated on the same dataset. The comparison of ECLAIR instances and of SPADE instances generated on non-overlapping datasets and evaluated on a separate test set calls for detailed explanations. 
+
+To that purpose, we are splitting a dataset into three equally-sized, non-overlapping parts, ```S1```, ```S2``` and ```S3```. We train an ECLAIR tree (```Ecl_1```) and a SPADE tree on ```S1``` (```Spd_1```). We then train another ECLAIR tree (```Ecl_2```) and yet another SPADE tree (```Spd_2```) on the set ```S2```.
+
+The training procedure for ```Ecl_1``` involves 50 runs of downsampling and clustering of the samples within ```S1```. The downsampling ratio is set at 50%. Therefore, ```Ecl_1``` is an aggregation of 50 trees, all generated from ```S1``` alone.
+
+In order to compare ```Ecl_1``` with ```Ecl_2```, the cells in ```S3``` are mapped to the clusters/nodes in ```Ecl_1``` and in ```Ecl_2``` to which they are nearest in the high-dimensional gene expression space.
+
+Idem when it comes to comparing ```Spd_1``` and ```Spd_2```.
+
+The procedure outlined above is repeated 10 times. We end up with two lists of 30 correlation coefficients telling us about the similarity of as many pairs of ECLAIR or SPADE trees. Indeed, while things have been exposed as involving only the evaluation of ```Ecl_1``` and ```Ecl_2``` on ```S3``` using as a test set, one can also generate an ECLAIR tree using S3 as a training set. This allows the additional comparisons of ```Ecl_1``` with ```Ecl_3``` and of ```Ecl_2``` with ```Ecl_3```.
+
+It also bears pointing out we are using the same test set (```S3```) for assessing the similarity of pairs of ECLAIR trees (```Ecl_1``` vs. ```Ecl_2```) as for evaluating the similitude of pairs of SPADE trees (```Spd_1``` vs. ```Spd_2```).
 
 References
 ----------
