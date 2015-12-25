@@ -39,11 +39,11 @@ from .Robustness_analysis import *
 from .Statistical_tests import *
 
 def tree_edges(ref_tree, max_ref_dist, max_overall_dist):
-    from . Class_tree_edges import tree_edges
+    from .Class_tree_edges import tree_edges
     return tree_edges(ref_tree, max_ref_dist, max_overall_dist)
     
 def gaussian_kde(data_hdf5_storage, bandwidth_method = None):
-    from . Gaussian_KDE_HDF5 import gaussian_kde
+    from .Gaussian_KDE_HDF5 import gaussian_kde
     return gaussian_kde(data_hdf5_storage, bandwidth_method)
 
 
