@@ -550,7 +550,7 @@ else:
     except OSError:
         if not os.path.isdir('./ECLAIR_instance'):
             print("\nERROR: ECLAIR: Build_instance: failed to create a directory "
-                  "where to store all the information pertaining to the 
+                  "where to store all the information pertaining to the "
                   "ECLAIR statistical learning on the dataset provided at input.\n")
             raise
 
