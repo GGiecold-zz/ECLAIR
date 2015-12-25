@@ -437,8 +437,18 @@ def experiment_3():
 
     max_N_clusters = 50
  
-    name_tags = ['training_{0}'.format(i) for i in xrange(1, 51)]
+    name_tags = ['training_{0}'.format(i) for i in xrange(1, 11)]
+    
+    SPADE_files = pkg_resources.resource_filename(__name__,
+                      'data/SPADE_same_dataset')
+                      
+    for i in xrange(1, 11):
+        with open(SPADE_files + '/training_{0}/training_{1}.txt'.format(i, i), 'r') as f:
+            training_set = np.loadtxt(f, dtype = int, delimiter = '\t')
+        
+        with open(output_directory + '/training_{0}.txt', 'w') as f:
+            np.savetxt(f, training_set, fmt = '%d', delimiter = '\t')
 
-    _ = robustness_metrics(max_N_clusters, output_directory + '/SPADE_files',
-                           name_tags, output_directory, test_set_flag = False)
+    _ = robustness_metrics(max_N_clusters, SPADE_files, name_tags, 
+                           output_directory, test_set_flag = False)
 
