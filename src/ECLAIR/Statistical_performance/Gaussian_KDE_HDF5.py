@@ -354,8 +354,8 @@ class gaussian_kde(object):
     
         assert isinstance(N_bins, int) and N_bins > 1
 
-        mins = self.smallest()
-        maxs = self.largest()
+        mins = self.__mins
+        maxs = self.__maxs
 
         x_i, y_i = np.mgrid[mins[0]:maxs[0]:N_bins*1j, mins[1]:maxs[1]:N_bins*1j]
         z_i = g_kde(np.vstack((x_i.flatten(), y_i.flatten())))
@@ -364,7 +364,7 @@ class gaussian_kde(object):
         fig.suptitle("Gaussian KDE of the pairwise distances between cells.",
                      fontsize = 10)
 
-        plt.pcolormesh(x_i, y_i, z_i.reshape(x_i.shape))
+        plt.pcolormesh(x_i, y_i, z_i.reshape(x_i.shape), rasterized = True)
 
         fig.tight_layout()
         plt.savefig(output_directory + '/Gaussian_kde_inter_trees_pairwise_cells_distances_{}.pdf'.format(tag))
