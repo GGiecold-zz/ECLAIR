@@ -391,7 +391,7 @@ def get_mean_and_variance(hdf5_file_name, axis, N_samples, dist_mat,
         n2, n1 = n1, n2
     
 
-    chunks_size = getChunksSize(n2, 2)
+    chunks_size = get_chunk_size(n2, 2)
     for i in xrange(0, n1, chunks_size):
         if axis:
             M = contingency_table[:, i:min(i+chunks_size, n1)]
@@ -741,7 +741,7 @@ def pairwise_distances_correlations(hdf5_file_name, cluster_IDs_1, cluster_IDs_2
     spearman_rho_12 = 0.0
     
     c = 0    
-    chunks_size = getChunksSize(N_2 * (N_2 + 1) / 2, 4)
+    chunks_size = get_chunk_size(N_2 * (N_2 + 1) / 2, 4)
     for i in xrange(0, N_1 * (N_1 + 1) / 2, chunks_size):
         max_ind = min(i + chunks_size, N_1 * (N_1 + 1) / 2)
 
@@ -955,7 +955,7 @@ def chi_squared_and_likelihood_ratio(hdf5_file_name, median_dist_1, median_dist_
         if axis:
             n2, n1 = n1, n2
     
-        chunks_size = getChunksSize(n2, 2)
+        chunks_size = get_chunk_size(n2, 2)
         for i in xrange(0, n1, chunks_size):
             if axis:
                 M = contingency_table[:, i:min(i+chunks_size, n1)]
@@ -990,7 +990,7 @@ def chi_squared_and_likelihood_ratio(hdf5_file_name, median_dist_1, median_dist_
     X_ij_table = np.zeros((I, J), dtype = np.int64)
 
     c = 0
-    chunks_size = getChunksSize(N_2 * (N_2 + 1) / 2, 4)
+    chunks_size = get_chunk_size(N_2 * (N_2 + 1) / 2, 4)
     for i in xrange(0, N_1 * (N_1 + 1) / 2, chunks_size):
         max_ind = min(i + chunks_size, N_1 * (N_1 + 1) / 2)
 
