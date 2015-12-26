@@ -358,7 +358,7 @@ class gaussian_kde(object):
         maxs = self.__maxs
 
         x_i, y_i = np.mgrid[mins[0]:maxs[0]:N_bins*1j, mins[1]:maxs[1]:N_bins*1j]
-        z_i = g_kde(np.vstack((x_i.flatten(), y_i.flatten())))
+        z_i = self.evaluate(np.vstack((x_i.flatten(), y_i.flatten())))
 
         fig = plt.figure()
         fig.suptitle("Gaussian KDE of the pairwise distances between cells.",
