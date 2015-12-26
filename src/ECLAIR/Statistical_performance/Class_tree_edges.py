@@ -198,7 +198,7 @@ class tree_edges(object):
     def max_overall_dist(self, max_overall_dist):
 
         assert isinstance(max_overall_dist, int) and max_overall_dist > 0, "'max_ref_dist' must be a positive integer"
-        assert max_overall_dist >= max_ref_dist, "'max_overall_dist' must be larger than 'max_ref_dist'"
+        assert max_overall_dist >= self.__max_ref_dist, "'max_overall_dist' must be larger than 'max_ref_dist'"
         self.__max_overall_dist = max_overall_dist
 
     @counter(lambda x: x.__ref_tree)
