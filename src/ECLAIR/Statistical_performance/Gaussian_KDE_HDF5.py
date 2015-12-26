@@ -138,7 +138,7 @@ class gaussian_kde(object):
                 repetitions = fileh.root.repetitions
                 
                 szum = 0
-                chunks_size = getChunksSize(1, 1)
+                chunks_size = get_chunk_size(1, 1)
                 for i in xrange(0, self.__N_training, chunks_size):
                     max_ind = min(i + chunks_size, self.__N_training)
                     szum += np.sum(repetitions[0, i:max_ind])
@@ -174,7 +174,7 @@ class gaussian_kde(object):
             for i in xrange(N_eval):
                 eval_point = eval_set[:, i, np.newaxis]
 
-                chunks_size = getChunksSize(self.__N_features, 4)
+                chunks_size = get_chunk_size(self.__N_features, 4)
                 for j in xrange(0, self.__N_training, chunks_size):
                     max_ind = min(j + chunks_size, self.__N_training)
         
@@ -258,7 +258,7 @@ class gaussian_kde(object):
             smallest = dataset[:, 0]
             largest = dataset[:, 0]
 
-            chunks_size = getChunksSize(self.__N_features, 4)
+            chunks_size = get_chunk_size(self.__N_features, 4)
             for i in xrange(0, self.__N_training, chunks_size):
                 max_ind = min(i + chunks_size, self.__N_training)
 
@@ -299,7 +299,7 @@ class gaussian_kde(object):
 
             covariance_matrix = np.zeros((self.__N_features, self.__N_features), dtype = float)
 
-            chunks_size = getChunksSize(self.__N_features, 4)
+            chunks_size = get_chunk_size(self.__N_features, 4)
             for i in xrange(0, self.__N_training, chunks_size):
                 max_ind = min(i + chunks_size, self.__N_training)
 
