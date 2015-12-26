@@ -372,7 +372,7 @@ class tree_edges(object):
         row_indices = self.__select_row_indices.values()
         row_indices = np.array(row_indices, dtype = int, copy = False)
 
-        chunks_size = getChunksSize(contingency_table.shape[1], 4)
+        chunks_size = get_chunk_size(contingency_table.shape[1], 4)
         for i in xrange(0, row_indices.size, chunks_size):
             max_ind = min(i + chunks_size, row_indices.size)
 
