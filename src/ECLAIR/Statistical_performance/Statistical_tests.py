@@ -824,8 +824,8 @@ def pairwise_distances_correlations(hdf5_file_name, cluster_IDs_1, cluster_IDs_2
 
     g_kde = Gaussian_KDE_HDF5.gaussian_kde('kde_data_storage.h5')
 
-    Cov = g_kde.covariance_matrix()
-    means = g_kde.means()
+    Cov = g_kde.covariance_matrix
+    means = g_kde.means
 
     slope = pearson_rho_12 * (sqrt(Cov[1,1]) / sqrt(Cov[0,0]))
     intercept = means[1] - (slope * means[0])
