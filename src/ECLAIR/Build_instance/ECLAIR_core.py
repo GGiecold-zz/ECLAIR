@@ -54,7 +54,6 @@ from math import floor, sqrt
 import numpy as np
 import os
 import random
-import re
 import scipy.sparse
 from scipy.spatial.distance import _validate_vector
 from sklearn.decomposition import PCA
@@ -327,14 +326,8 @@ def dataProcessor(data_file_name, skip_rows, cell_IDs_column,
 
     with open(data_file_name, 'r') as f:
         lst = f.readline()
-        
-        if skip_rows:
-            lst = re.findall(r"[\w']+", lst)
-        else:
-            lst = lst.replace('\t', ' ').replace(',', ' ').split()
-        
+        lst = lst.replace('\t', ' ').replace(',', ' ').split()
         N_cols = len(lst)
-            
 
     assert time_info_column < N_cols
 
