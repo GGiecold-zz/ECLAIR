@@ -160,7 +160,7 @@ def ECLAIR_generator(data_file_name, sampling_fraction, N_runs, N_iter,
 
     if data_flag == 'CyTOF':
         skiprows = 1
-        delimiter = ','
+        delimiter = '\t'
         usecols = [3, 4, 5, 7, 8, 9, 10, 12, 13]
     elif data_flag == 'qPCR':
         skiprows = 1
@@ -320,9 +320,9 @@ def experiment_1(N_iter, data_flags, method = 'k-means', test_set_flag = True):
         
         # Access path to the CyTOF mouse bone marrow dataset
         compressed_data_path = pkg_resources.resource_filename(__name__,
-                        'data/SPADE_data/nbt-SD2-Transformed.csv.tar.gz')
+                        'data/SPADE_data/nbt-SD2-Transformed.tsv.tar.gz')
         extract_file(compressed_data_path, './ECLAIR_performance')
-        data_file = './ECLAIR_performance/nbt-SD2-Transformed.csv'
+        data_file = './ECLAIR_performance/nbt-SD2-Transformed.tsv'
 
         max_N_clusters = 50
 
@@ -397,7 +397,7 @@ def experiment_2(data_file_name, k, sampling_fraction = 0.2, N_runs = 50):
         raise
 
     with open(data_file_name, 'r') as f: 
-        data = np.loadtxt(f, dtype = float, skiprows = 1, delimiter = ',')
+        data = np.loadtxt(f, dtype = float, skiprows = 1, delimiter = '\t')
 
     N_samples = data.shape[0]
 
