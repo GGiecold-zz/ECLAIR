@@ -50,16 +50,17 @@ for data_flags in sorted(permutations([True, False, False]))[::-2]:
     experiment_1(3, data_flags, method)
 
 # Pairwise comparisons of ECLAIR trees/graphs generated on the same dataset
+usecols = [3, 4, 5, 7, 8, 9, 10, 12, 13]
+
 with open('./ECLAIR_performance/nbt-SD2-Transformed.csv', 'r') as f:
-    features = f.readline()
-    data = np.loadtxt(f, dtype = float, delimiter = ',')
+    features = f.readline().split(',')
+    data = np.loadtxt(f, dtype = float, delimiter = ',', usecols = usecols)
     
 N_samples = data.shape[0]
-sampling_indices = np.sort(np.random.choice(N_samples, size = N_samples / 3, 
-                                            replace = False))
+sampling_indices = np.sort(np.random.choice(N_samples, size = N_samples / 3, replace = False))
 
 with open('./ECLAIR_performance/one_third_of_nbt-SD2-Transformed.csv', 'w') as f:
-    f.write(features)
+    f.write(','.join(features[i] for i in usecols))
     np.savetxt(f, data[sampling_indices], fmt = '%.4f', delimiter = ',')
 
 experiment_2('./ECLAIR_performance/one_third_of_nbt-SD2-Transformed.csv', 
