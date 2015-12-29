@@ -452,7 +452,7 @@ def experiment_3():
         training_set = np.loadtxt(f, dtype = int, delimiter = '\t')
             
     for i in xrange(1, 11):
-        with open(output_directory + '/training_{0}.txt', 'w') as f:
+        with open(output_directory + '/training_{0}.txt'.format(i), 'w') as f:
             np.savetxt(f, training_set, fmt = '%d', delimiter = '\t')
 
     _ = robustness_metrics(max_N_clusters, SPADE_files, name_tags, 
