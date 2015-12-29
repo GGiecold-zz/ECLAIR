@@ -370,6 +370,13 @@ def experiment_1(N_iter, data_flags, method = 'k-means', test_set_flag = True):
             
         SPADE_files = pkg_resources.resource_filename(__name__,
                           'data/SPADE_test_sets')
+        
+        for i in xrange(1, 4):                  
+            with open(SPADE_files + '/training_{0}.txt'.format(i), 'r') as f:
+                training_set = np.loadtxt(f, dtype = int, delimiter = '\t')
+                
+            with open(output_directory + '/training_{0}.txt'.format(i), 'w') as f:
+                np.savetxt(f, training_set, fmt = '%d', delimiter = '\t')
                       
         name_tags = ['training_1', 'training_2', 'training_3']
 
