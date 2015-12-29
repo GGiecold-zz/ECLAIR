@@ -52,18 +52,18 @@ for data_flags in sorted(permutations([True, False, False]))[::-2]:
 # Pairwise comparisons of ECLAIR trees/graphs generated on the same dataset
 usecols = [3, 4, 5, 7, 8, 9, 10, 12, 13]
 
-with open('./ECLAIR_performance/nbt-SD2-Transformed.csv', 'r') as f:
-    features = f.readline().split(',')
-    data = np.loadtxt(f, dtype = float, delimiter = ',', usecols = usecols)
+with open('./ECLAIR_performance/nbt-SD2-Transformed.tsv', 'r') as f:
+    features = f.readline().split('\t')
+    data = np.loadtxt(f, dtype = float, delimiter = '\t', usecols = usecols)
     
 N_samples = data.shape[0]
 sampling_indices = np.sort(np.random.choice(N_samples, size = N_samples / 3, replace = False))
 
-with open('./ECLAIR_performance/one_third_of_nbt-SD2-Transformed.csv', 'w') as f:
-    f.write(','.join(features[i] for i in usecols))
-    np.savetxt(f, data[sampling_indices], fmt = '%.4f', delimiter = ',')
+with open('./ECLAIR_performance/one_third_of_nbt-SD2-Transformed.tsv', 'w') as f:
+    f.write('\t'.join(features[i] for i in usecols))
+    np.savetxt(f, data[sampling_indices], fmt = '%.4f', delimiter = '\t')
 
-experiment_2('./ECLAIR_performance/one_third_of_nbt-SD2-Transformed.csv', 
+experiment_2('./ECLAIR_performance/one_third_of_nbt-SD2-Transformed.tsv', 
              k = 50, sampling_fraction = 0.5, N_runs = 100)
        
 # Pairwise comparisons of SPADE trees generated on the same dataset             
