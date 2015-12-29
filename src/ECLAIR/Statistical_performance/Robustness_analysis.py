@@ -397,7 +397,7 @@ def experiment_2(data_file_name, k, sampling_fraction = 0.2, N_runs = 50):
         raise
 
     with open(data_file_name, 'r') as f: 
-        data = np.loadtxt(f, dtype = float, delimiter = '\t')
+        data = np.loadtxt(f, dtype = float, skiprows = 1, delimiter = ',')
 
     N_samples = data.shape[0]
 
@@ -412,7 +412,7 @@ def experiment_2(data_file_name, k, sampling_fraction = 0.2, N_runs = 50):
     cc_parameters = CC_parameters(N_runs, sampling_fraction, k)    
 
     Data_info = namedtuple('Data_info', 'data_file_name expected_N_samples skip_rows cell_IDs_column extra_excluded_columns time_info_column')
-    data_info = Data_info(data_file_name, N_samples, 0, 0, None, -1)
+    data_info = Data_info(data_file_name, N_samples, 1, 0, None, -1)
 
     name_tags = []
 
