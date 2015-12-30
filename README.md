@@ -72,7 +72,7 @@ It is generally recommended to leave the ``options`` field empty, which will tri
 To launch a full-fledged statistical performance analysis of ECLAIR and see how it consistenly performs better than SPADE, a popular method for estimating cell lineages, proceed as follows:
 * at the Shell command-line interface or graphical user interface, type in ```ECLAIR_performance```.
 
-A folder dubbed ``ECLAIR_performance`` will be created in your current directory, recording on the fly the results of various statistical tests and comparisons of ECLAIR graphs and trees, as well as of SPADE trees.
+The eponymous folder ``ECLAIR_performance`` will be created in your current directory, recording on the fly the results of various statistical tests and comparisons of ECLAIR graphs and trees, as well as of SPADE trees.
 
 In the current version, the statistical performance of ECLAIR is only evaluated for a fairly large (by the current standards of computational biology) flow cytometry dataset of half-a-million samples and 8 features, as well as on a qPCR dataset of mouse bone marrow samples. It shouldn't be difficult for anyone competent in Python to quickly peruse through the source code of ECLAIR and bring about a few of the changes required to submit his/her own data to a similar statistical analysis (those changes mostly pertain to domain-specific knowledge and to the format of your dataset). ECLAIR has been designed so as to accommodate arbitrarily large datasets (this is achieved through the use HDF5 data structures, most notably).
 
