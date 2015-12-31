@@ -51,6 +51,7 @@ Any missing or out-of-date dependency should be automatically resolved. Apart fr
 * ```Concurrent_AP``` (version 1.3 or later)
 * ```DBSCAN_multiplex``` (version 1.5 or ulterior)
 * ```Density_Sampling``` (1.1 or subsequent version)
+* ```igraph```
 * ```matplotlib``` (version 1.4.3 at least)
 * ```munkres```
 * ```numpy``` (1.9.0 or ulterior version)
