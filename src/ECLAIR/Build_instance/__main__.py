@@ -35,7 +35,7 @@ In: International Journal of Pattern Recognition and Artificial Intelligence,
 """
 
 
-from . import ECLAIR_core as ECLR
+from .ECLAIR_core import ECLAIR_processing
 
 from collections import namedtuple
 import datetime
@@ -558,7 +558,7 @@ else:
             raise
 
     # Ready to start generating an instance of ECLAIR!
-    _ = ECLR.ECLAIR_processing('./ECLAIR_instance/store.h5', 
-                               data_info, clustering_parameters, 
-                               cc_parameters, './ECLAIR_instance')
+    _ = ECLAIR_processing('./ECLAIR_instance/store.h5', 
+                          data_info, clustering_parameters, 
+                          cc_parameters, './ECLAIR_instance')
 
