@@ -38,9 +38,12 @@ In: International Journal of Pattern Recognition and Artificial Intelligence,
 from . import ECLAIR_core as ECLR
 
 from collections import namedtuple
+import datetime
 import locale
-import optparse                      # TO DO: allow command-line options for ECLAIR
+from math import floor, sqrt
+import optparse
 import os
+import re
 import sys
 import tables
 
