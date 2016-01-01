@@ -547,18 +547,17 @@ else:
               "method\n")
         sys.exit(1)
     
+try:
+    os.makedirs('./ECLAIR_instance')
+except OSError:
+    if not os.path.isdir('./ECLAIR_instance'):
+        print("\nERROR: ECLAIR: Build_instance: failed to create a directory "
+              "where to store all the information pertaining to the "
+              "ECLAIR statistical learning on the dataset provided at input.\n")
+        raise
 
-    try:
-        os.makedirs('./ECLAIR_instance')
-    except OSError:
-        if not os.path.isdir('./ECLAIR_instance'):
-            print("\nERROR: ECLAIR: Build_instance: failed to create a directory "
-                  "where to store all the information pertaining to the "
-                  "ECLAIR statistical learning on the dataset provided at input.\n")
-            raise
-
-    # Ready to start generating an instance of ECLAIR!
-    _ = ECLAIR_processing('./ECLAIR_instance/store.h5', 
+# Ready to start generating an instance of ECLAIR!
+_ = ECLAIR_processing('./ECLAIR_instance/store.h5', 
                           data_info, clustering_parameters, 
                           cc_parameters, './ECLAIR_instance')
 
