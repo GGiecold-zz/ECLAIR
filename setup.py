@@ -50,7 +50,7 @@ with open(path.join(here, 'README'), encoding = 'utf-8') as f:
     
 
 setup(name = 'ECLAIR',
-      version = '1.11',
+      version = '1.14',
       
       description = "Robust inference of cell lineages from gene expression data " 
                     "via consensus clustering and the aggregation of ensembles "
@@ -70,7 +70,7 @@ setup(name = 'ECLAIR',
       platforms = ('Any',),
       install_requires = ['Cluster_Ensembles>=1.16', 'Concurrent_AP>=1.3', 
                           'DBSCAN_multiplex>=1.5', 'Density_Sampling>=1.1',
-                          'matplotlib>=1.4.3', 'munkres', 'numpy>=1.9.0', 
+                          'igraph', 'matplotlib>=1.4.3', 'munkres', 'numpy>=1.9.0', 
                           'scipy', 'sklearn', 'setuptools', 'tables'],
                           
       classifiers = ['Development Status :: 4 - Beta',
