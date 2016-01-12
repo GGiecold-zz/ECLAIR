@@ -456,7 +456,7 @@ def get_MST(run, exemplars, exemplars_similarities, cell_IDs, name_tag,
 
     mst = g.spanning_tree(weights = g.es['weight'])
 
-    layout = mst.layout('grid_fr')
+    layout = mst.layout('fr')
     name = output_directory + '/ECLAIR_figures/{}/mst-run-{}__{}.pdf'.format(name_tag, run + 1, name_tag)
 
     igraph.plot(mst, name, bbox = (5500, 5500), margin = 60, layout = layout,
@@ -1325,7 +1325,7 @@ def ECLAIR_processing(hdf5_file_name, data_info, clustering_parameters,
 
     mst = g.spanning_tree(weights = g.es['weight'])
  
-    layout = mst.layout('grid_fr')
+    layout = mst.layout('fr')
     name = output_directory + '/ECLAIR_figures/{}/consensus-lineage__{}.pdf'.format(name_tag, name_tag)  
 
     cluster_sizes = np.bincount(consensus_labels[cells_kept])
