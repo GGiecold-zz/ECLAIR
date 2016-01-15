@@ -398,21 +398,27 @@ def user_interface():
     return data_info, clustering_parameters, cc_parameters
 
 
-locale.setlocale(locale.LC_ALL, "")
+def parse_options():
+    """Specify the command line options to parse.
+    
+    Returns
+    -------
+    opts : optparse.Values instance
+        Contains the option values in its 'dict' member variable.
+    
+    args[0] : string or file-handler
+        The name of the file storing the data-set submitted
+        for Affinity Propagation clustering.
+    """
 
-if len(sys.argv) == 1:
-    # Calling the user interface:
-    data_info, clustering_parameters, cc_parameters = user_interface()
-else:
-    parser = optparse.OptionParser(
-                 usage = "Usage: %prog [options] file_name\n\n"
-                 "file_name denotes the path for accessing the data "
-                 "submitted for ECLAIR analysis")
+    parser = optparse.OptionParser(usage = "Usage: %prog [options] file_name\n\n"
+                                   "file_name denotes the path for accessing the data "
+                                   "submitted for ECLAIR analysis")
 
     parser.add_option('-s', '--skiprows', dest = 'skip_rows', type = 'int', 
                       help = ("The number of rows in the data file that should "
-                              "be skipped as part of this file's header "
-                              "[default: %default]"))
+                      "be skipped as part of this file's header "
+                      "[default: %default]"))
 
     parser.add_option('-i', '--cell_IDs_column', dest = 'cell_IDs_column', 
                       type = 'int', help = ("The column of the data file holding "
@@ -456,10 +462,10 @@ else:
     parser.add_option('-c', '--N_cc', dest = 'N_cc', type = 'int', 
                       help = ("The number of consensus clusters into which to "
                       "partition your dataset; this number doesn't have to agree "
-                      "with the value of 'k' selected for k-means clustering, "
-                      "for instance; in fact, consensus clustering can be applied "
-                      "to an ensemble where samples have been partitioned into "
-                      "different overall number of clusters [default: %default]"))
+                       "with the value of 'k' selected for k-means clustering, "
+                       "for instance; in fact, consensus clustering can be applied "
+                       "to an ensemble where samples have been partitioned into "
+                       "different overall number of clusters [default: %default]"))
 
     parser.add_option('-m', '--method', dest = 'method', type = 'str', 
                       help = ("The clustering algorithm into which fraction of your "
@@ -522,42 +528,81 @@ else:
                         eps = None, quantile = 50, metric = 'minkowski', k = 50)
 
     opts, args = parser.parse_args()
-
-    data_info = Data_info(sys.argv[-1], opts.expected_N_samples, opts.skip_rows,
-                          opts.cell_IDs_column, opts.extra_excluded_columns,
-                          opts.time_info_column)
-
-    cc_parameters = CC_parameters(opts.N_runs, opts.sampling_fraction, opts.N_cc)
     
-    if opts.method in {'KMEANS', 'k-means', 'kmeans'}:
-        clustering_parameters = KMEANS_parameters('k-means', opts.k)
-    elif opts.method in {'DBSCAN', 'dbscan'}:
-        clustering_parameters = DBSCAN_parameters('DBSCAN', opts.minPts, opts.eps,
-                                                  opts.quantile, opts.metric)
-    elif opts.method in {'Affinity Propagation', 'Affinity propagation', 
-                         'Affinity-Propagation', 'Affinity-propagation', 
-                         'affinity propagation', 'affinity-propagation'}:
-        clustering_parameters = AP_parameters('affinity_propagation', opts.max_iter,
-                                              opts.convergence_iter)
-    elif opts.method in {'Agglomerative', 'Hierarchical', 'hierarchical',
-                         'agglomerative'}:
-        clustering_parameters = HIERARCHICAL_parameters('hierarchical', opts.k)
+    if len(args) == 0:
+        parser.error('A data file must be specified')
+        
+    if opts.skip_rows < 0:
+        parser.error("The number specifiying how many lines of header are in your file "
+                     "must be non-negative")
+                     
+    if opts.expected_N_samples <= 0:
+        parser.error("Please provide a non-negative estimate of the number of samples "
+                     "in your dataset.")
+                     
+    if opts.N_runs < 1:
+        parser.error("To take advantage of consensus clustering, please subject your "
+                     "dataset to at least two rounds of downsampling and clustering.")
+                     
+    if not (0 < sampling_fraction < 1):
+        parser.error("The sampling fraction parameter must be in the range (0; 1).")
+        
+    if opts.N_cc < 2:
+        parser.error("The desired number of consensus clusters must be at least 2.")
+        
+    return opts, args[0] 
+
+
+def main():
+
+    locale.setlocale(locale.LC_ALL, "")
+        
+    if len(sys.argv) == 1:
+    # Calling the user interface:
+        data_info, clustering_parameters, cc_parameters = user_interface()
     else:
-        print("\nERROR: ECLAIR: Build_instance: invalid choice of clustering "
-              "method\n")
-        sys.exit(1)
+        opts, args = parse_options()
     
-try:
-    os.makedirs('./ECLAIR_instance')
-except OSError:
-    if not os.path.isdir('./ECLAIR_instance'):
-        print("\nERROR: ECLAIR: Build_instance: failed to create a directory "
-              "where to store all the information pertaining to the "
-              "ECLAIR statistical learning on the dataset provided at input.\n")
-        raise
+        data_info = Data_info(args, opts.expected_N_samples, opts.skip_rows,
+                              opts.cell_IDs_column, opts.extra_excluded_columns,
+                              opts.time_info_column)
 
-# Ready to start generating an instance of ECLAIR!
-_ = ECLAIR_processing('./ECLAIR_instance/store.h5', 
+        cc_parameters = CC_parameters(opts.N_runs, opts.sampling_fraction, opts.N_cc)
+    
+        if opts.method in {'KMEANS', 'k-means', 'kmeans'}:
+            clustering_parameters = KMEANS_parameters('k-means', opts.k)
+        elif opts.method in {'DBSCAN', 'dbscan'}:
+            clustering_parameters = DBSCAN_parameters('DBSCAN', opts.minPts, opts.eps,
+                                                      opts.quantile, opts.metric)
+        elif opts.method in {'Affinity Propagation', 'Affinity propagation', 
+                             'Affinity-Propagation', 'Affinity-propagation', 
+                             'affinity propagation', 'affinity-propagation'}:
+            clustering_parameters = AP_parameters('affinity_propagation', opts.max_iter,
+                                                  opts.convergence_iter)
+        elif opts.method in {'Agglomerative', 'Hierarchical', 'hierarchical',
+                             'agglomerative'}:
+            clustering_parameters = HIERARCHICAL_parameters('hierarchical', opts.k)
+        else:
+            print("\nERROR: ECLAIR: Build_instance: invalid choice of clustering "
+                  "method\n")
+            sys.exit(1)
+    
+    try:
+        os.makedirs('./ECLAIR_instance')
+    except OSError:
+        if not os.path.isdir('./ECLAIR_instance'):
+            print("\nERROR: ECLAIR: Build_instance: failed to create a directory "
+                  "where to store all the information pertaining to the "
+                  "ECLAIR statistical learning on the dataset provided at input.\n")
+            raise
+
+    # Ready to start generating an instance of ECLAIR!
+    _ = ECLAIR_processing('./ECLAIR_instance/store.h5', 
                           data_info, clustering_parameters, 
                           cc_parameters, './ECLAIR_instance')
+                      
 
+if __name__ == '__main__':
+    main()
+    
+    
