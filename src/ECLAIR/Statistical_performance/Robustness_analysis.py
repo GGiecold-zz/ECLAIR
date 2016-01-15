@@ -307,7 +307,7 @@ def experiment_1(N_iter, data_flags, method = 'k-means', test_set_flag = True):
 
     start_t = time.time()
 
-    ECLAIR_CyTOF_flag, ECLAIR_qPCR_flag, SPADE_CyTOF_flag = data_flags
+    ECLAIR_qPCR_flag, ECLAIR_CyTOF_flag, SPADE_CyTOF_flag = data_flags
 
     if ECLAIR_CyTOF_flag:
         output_directory = './ECLAIR_performance/ECLAIR_test_sets_CyTOF'
