@@ -20,15 +20,15 @@ In addition, the present package features several customized algorithms for asse
 
 References
 ----------
-Giecold, G., Marco, E., Trippa, L. and Yuan, G.-C.,
-"Robust Inference of Cell Lineages".
-Submitted for publication
+* Giecold, G., Marco, E., Trippa, L. and Yuan, G.-C.,
+"Robust Lineage Reconstruction from High-Dimensional Single-Cell Data". 
+ArXiv preprint [q-bio.QM, stat.AP, stat.CO, stat.ML]: http://arxiv.org/abs/1601.02748
 
-Strehl, A. and Ghosh, J., "Cluster Ensembles - A Knowledge Reuse Framework
+* Strehl, A. and Ghosh, J., "Cluster Ensembles - A Knowledge Reuse Framework
 for Combining Multiple Partitions".
 In: Journal of Machine Learning Research, 3, pp. 583-617. 2002
 
-Conte, D., Foggia, P., Sansone, C. and Vento, M., 
+* Conte, D., Foggia, P., Sansone, C. and Vento, M., 
 "Thirty Years of Graph Matching in Pattern Recognition". 
 In: International Journal of Pattern Recognition and Artificial Intelligence, 
 18, 3, pp. 265-298. 2004
