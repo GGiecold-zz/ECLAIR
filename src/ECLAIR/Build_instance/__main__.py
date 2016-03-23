@@ -62,6 +62,31 @@ KMEANS_parameters = namedtuple('KMEANS_parameters', 'clustering_method k')
 CC_parameters = namedtuple('CC_parameters', 'N_runs sampling_fraction N_cc')
 
 
+def memory():
+    """Determine memory specifications of the machine.
+
+    Returns
+    -------
+    mem_info : dictonary
+        Holds the current values for the total, free and used memory of the system.
+    """
+
+    mem_info = {}
+
+    with open('/proc/meminfo') as file:
+        c = 0
+        for line in file:
+            lst = line.split()
+            if str(lst[0]) == 'MemTotal:':
+                mem_info['total'] = int(lst[1])
+            elif str(lst[0]) in ('MemFree:', 'Buffers:', 'Cached:'):
+                c += int(lst[1])
+        mem_info['free'] = c
+        mem_info['used'] = (mem_info['total']) - c
+
+    return mem_info
+    
+
 def user_interface():
     """Retrieve the path to the data-file and various related parameters.
        Propose to choose from different clustering algorithms 
