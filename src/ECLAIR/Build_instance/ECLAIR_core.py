@@ -60,6 +60,7 @@ from sklearn.decomposition import PCA
 from sklearn.metrics.pairwise import pairwise_distances
 from sklearn.metrics import pairwise_distances_argmin_min
 from sklearn.preprocessing import StandardScaler
+import subprocess
 from sys import exit
 import tables
 import time
