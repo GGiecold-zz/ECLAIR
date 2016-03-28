@@ -71,7 +71,7 @@ setup(name = 'ECLAIR',
       install_requires = ['Cluster_Ensembles>=1.16', 'Concurrent_AP>=1.3', 
                           'DBSCAN_multiplex>=1.5', 'Density_Sampling>=1.1',
                           'matplotlib>=1.4.3', 'munkres', 'numpy>=1.9.0',
-                          'python-igraph', 'scipy', 'sklearn', 'setuptools', 
+                          'python-igraph', 'scipy>=0.16', 'sklearn', 'setuptools', 
                           'tables'],
                           
       classifiers = ['Development Status :: 4 - Beta',
