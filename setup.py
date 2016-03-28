@@ -50,7 +50,7 @@ with open(path.join(here, 'README'), encoding = 'utf-8') as f:
     
 
 setup(name = 'ECLAIR',
-      version = '1.17',
+      version = '1.18',
       
       description = "Robust inference of cell lineages from gene expression data " 
                     "via consensus clustering and the aggregation of ensembles "
