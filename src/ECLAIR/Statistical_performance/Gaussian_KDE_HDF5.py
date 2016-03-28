@@ -40,7 +40,7 @@ from math import pi, sqrt
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-import scipy.lib.six
+import scipy._lib.six
 from sys import exit
 import tables
 
@@ -217,10 +217,10 @@ class gaussian_kde(object):
             self.__covariance_factor = self.scott_factor
         elif bw_method == 'silverman':
             self.__covariance_factor = self.silverman_factor
-        elif np.isscalar(bw_method) and not isinstance(bw_method, scipy.lib.six.string_types):
+        elif np.isscalar(bw_method) and not isinstance(bw_method, scipy._lib.six.string_types):
             self.__bw_method = 'use constant'
             self.__covariance_factor = lambda: bw_method
-        elif scipy.lib.six.callable(bw_method):
+        elif scipy._lib.six.callable(bw_method):
             self.__bw_method = bw_method
             self.__covariance_factor = lambda: self._bw_method(self)
         else:
