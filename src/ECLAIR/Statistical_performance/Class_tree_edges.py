@@ -41,6 +41,8 @@ from fractions import gcd
 import functools
 from itertools import combinations
 from math import ceil, floor, sqrt
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
 import numpy as np
