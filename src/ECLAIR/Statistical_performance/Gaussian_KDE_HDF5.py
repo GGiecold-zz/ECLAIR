@@ -37,6 +37,8 @@ In: International Journal of Pattern Recognition and Artificial Intelligence,
 from __future__ import print_function
 
 from math import pi, sqrt
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 import os
