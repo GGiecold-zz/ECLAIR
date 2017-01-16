@@ -49,6 +49,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import operator
 import os
+import psutil
 from scipy.special import betainc, chdtrc
 from scipy.stats import entropy, distributions, norm, rankdata
 from sklearn.metrics import normalized_mutual_info_score
@@ -73,20 +74,11 @@ def memory():
         Holds the current values for the total, free and used memory of the system.
     """
 
+    mem_info = dict()
 
-    mem_info = {}
-
-    with open('/proc/meminfo') as file:
-        c = 0
-        for line in file:
-            lst = line.split()
-            if str(lst[0]) == 'MemTotal:':
-                mem_info['total'] = int(lst[1])
-            elif str(lst[0]) in ('MemFree:', 'Buffers:', 'Cached:'):
-                c += int(lst[1])
-        mem_info['free'] = c
-        mem_info['used'] = (mem_info['total']) - c
-
+    for k, v in psutil.virtual_memory().__dict__.iteritems():
+           mem_info[k] = int(v)
+           
     return mem_info
 
 
