@@ -55,6 +55,8 @@ Any missing or out-of-date dependency should be automatically resolved. Apart fr
 * ```matplotlib``` (version 1.4.3 at least)
 * ```munkres```
 * ```numpy``` (1.9.0 or ulterior version)
+* ```psutil
+* ```numpy``` (1.9.0 or ulterior version)
 * ```scipy``` (0.16 or later version)
 * ```sklearn```
 * ```setuptools```
