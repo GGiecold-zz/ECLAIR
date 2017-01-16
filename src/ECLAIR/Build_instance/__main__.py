@@ -43,6 +43,7 @@ import locale
 from math import floor, sqrt
 import optparse
 import os
+import psutil
 import re
 import sys
 import tables
@@ -71,21 +72,13 @@ def memory():
         Holds the current values for the total, free and used memory of the system.
     """
 
-    mem_info = {}
+    mem_info = dict()
 
-    with open('/proc/meminfo') as file:
-        c = 0
-        for line in file:
-            lst = line.split()
-            if str(lst[0]) == 'MemTotal:':
-                mem_info['total'] = int(lst[1])
-            elif str(lst[0]) in ('MemFree:', 'Buffers:', 'Cached:'):
-                c += int(lst[1])
-        mem_info['free'] = c
-        mem_info['used'] = (mem_info['total']) - c
-
+    for k, v in psutil.virtual_memory().__dict__.iteritems():
+           mem_info[k] = int(v)
+           
     return mem_info
-    
+  
 
 def user_interface():
     """Retrieve the path to the data-file and various related parameters.
